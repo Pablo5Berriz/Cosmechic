@@ -1,0 +1,47 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Confirmation d'inscription";
+}
+
+<section class="py-5" style="margin-top: 100px;">
+    <div class="text-center">
+        <h1 class="fw-folder" style=" color:darkblue">
+            @ViewData["Title"]
+        </h1>
+    </div>
+</section>
+@{
+    if (@Model.DisplayConfirmAccountLink)
+    {
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <p>
+                                Cette application ne dispose pas actuellement d'un véritable expéditeur de courrier électronique, voir <a href="https://aka.ms/aspaccountconf">cette documentation</a> pour savoir comment configurer un véritable expéditeur de courrier électronique.
+                                Normalement, ce message devrait être envoyé par courriel : <a id="confirm-link" href="@Model.EmailConfirmationUrl">Cliquez ici pour confirmer votre compte</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <p>Veuillez vérifier votre courrier électronique pour confirmer votre compte.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+

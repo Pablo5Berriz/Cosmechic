@@ -1,0 +1,56 @@
+﻿@model Cosmechic.Models.Avi
+
+@{
+    ViewData["Title"] = "Création de l'avis";
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    }
+}
+
+<section class="py-5" style="margin-top: 100px;">
+    <div class="text-center">
+        <h1 class="fw-folder" style="color: darkblue">
+            @ViewData["Title"]
+        </h1>
+    </div>
+</section>
+
+<div class="container mt-5 mb-5">
+    <div class="col-lg-6">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Note" class="control-label">Note</label>
+                <input asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Commentaire" class="control-label">Commentaire</label>
+                <input asp-for="Commentaire" class="form-control" />
+                <span asp-validation-for="Commentaire" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DateReview" class="control-label">Date de l'avis</label>
+                <input asp-for="DateReview" class="form-control" readonly /> 
+                <span asp-validation-for="DateReview" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Nom du produit: @ViewBag.ProduitNom</label>
+            </div>
+
+            <div class="form-group">
+                <label>Nom de l'utilisateur: @ViewBag.UserName</label>
+            </div>
+
+            <div class="form-group">
+                <a asp-action="Index" class="btn btn-secondary">Voir les avis</a>
+                <button type="submit" class="btn btn-primary">Créer</button>
+            </div>
+        </form>
+    </div>
+</div>

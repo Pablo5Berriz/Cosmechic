@@ -1,0 +1,27 @@
+﻿@page
+@model AccessDeniedModel
+@{
+    ViewData["Title"] = "Accès refusé";
+}
+
+<section class="py-5" style="margin-top: 100px;">
+    <div class="text-center">
+        <h1 style=" color:darkblue">
+            @ViewData["Title"]
+        </h1>
+    </div>
+</section>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <p class="text-danger">Vous n'avez pas accès à cette ressource.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

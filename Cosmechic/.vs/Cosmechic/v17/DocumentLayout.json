@@ -1,0 +1,92 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\paulq\\Desktop\\Projet fin d\u0027\u00E9tudes\\Cosmechic\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{38B4E4E8-8908-4F80-99A0-40D6B7850F9D}|Cosmechic\\Cosmechic.csproj|c:\\users\\paulq\\desktop\\projet fin d\u0027\u00E9tudes\\cosmechic\\cosmechic\\views\\cart\\orderconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{38B4E4E8-8908-4F80-99A0-40D6B7850F9D}|Cosmechic\\Cosmechic.csproj|solutionrelative:cosmechic\\views\\cart\\orderconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38B4E4E8-8908-4F80-99A0-40D6B7850F9D}|Cosmechic\\Cosmechic.csproj|c:\\users\\paulq\\desktop\\projet fin d\u0027\u00E9tudes\\cosmechic\\cosmechic\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{38B4E4E8-8908-4F80-99A0-40D6B7850F9D}|Cosmechic\\Cosmechic.csproj|solutionrelative:cosmechic\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38B4E4E8-8908-4F80-99A0-40D6B7850F9D}|Cosmechic\\Cosmechic.csproj|c:\\users\\paulq\\desktop\\projet fin d\u0027\u00E9tudes\\cosmechic\\cosmechic\\views\\orderheaders\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{38B4E4E8-8908-4F80-99A0-40D6B7850F9D}|Cosmechic\\Cosmechic.csproj|solutionrelative:cosmechic\\views\\orderheaders\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38B4E4E8-8908-4F80-99A0-40D6B7850F9D}|Cosmechic\\Cosmechic.csproj|c:\\users\\paulq\\desktop\\projet fin d\u0027\u00E9tudes\\cosmechic\\cosmechic\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{38B4E4E8-8908-4F80-99A0-40D6B7850F9D}|Cosmechic\\Cosmechic.csproj|solutionrelative:cosmechic\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OrderConfirmation.cshtml",
+              "DocumentMoniker": "C:\\Users\\paulq\\Desktop\\Projet fin d\u0027\u00E9tudes\\Cosmechic\\Cosmechic\\Views\\Cart\\OrderConfirmation.cshtml",
+              "RelativeDocumentMoniker": "Cosmechic\\Views\\Cart\\OrderConfirmation.cshtml",
+              "ToolTip": "C:\\Users\\paulq\\Desktop\\Projet fin d\u0027\u00E9tudes\\Cosmechic\\Cosmechic\\Views\\Cart\\OrderConfirmation.cshtml",
+              "RelativeToolTip": "Cosmechic\\Views\\Cart\\OrderConfirmation.cshtml",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA8AAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-01T15:07:52.351Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "About.cshtml",
+              "DocumentMoniker": "C:\\Users\\paulq\\Desktop\\Projet fin d\u0027\u00E9tudes\\Cosmechic\\Cosmechic\\Views\\Home\\About.cshtml",
+              "RelativeDocumentMoniker": "Cosmechic\\Views\\Home\\About.cshtml",
+              "ToolTip": "C:\\Users\\paulq\\Desktop\\Projet fin d\u0027\u00E9tudes\\Cosmechic\\Cosmechic\\Views\\Home\\About.cshtml",
+              "RelativeToolTip": "Cosmechic\\Views\\Home\\About.cshtml",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAACsAAABCAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-01T14:55:03.933Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Contact.cshtml",
+              "DocumentMoniker": "C:\\Users\\paulq\\Desktop\\Projet fin d\u0027\u00E9tudes\\Cosmechic\\Cosmechic\\Views\\Home\\Contact.cshtml",
+              "RelativeDocumentMoniker": "Cosmechic\\Views\\Home\\Contact.cshtml",
+              "ToolTip": "C:\\Users\\paulq\\Desktop\\Projet fin d\u0027\u00E9tudes\\Cosmechic\\Cosmechic\\Views\\Home\\Contact.cshtml",
+              "RelativeToolTip": "Cosmechic\\Views\\Home\\Contact.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-01T14:44:15.554Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\paulq\\Desktop\\Projet fin d\u0027\u00E9tudes\\Cosmechic\\Cosmechic\\Views\\OrderHeaders\\Index.cshtml",
+              "RelativeDocumentMoniker": "Cosmechic\\Views\\OrderHeaders\\Index.cshtml",
+              "ToolTip": "C:\\Users\\paulq\\Desktop\\Projet fin d\u0027\u00E9tudes\\Cosmechic\\Cosmechic\\Views\\OrderHeaders\\Index.cshtml",
+              "RelativeToolTip": "Cosmechic\\Views\\OrderHeaders\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAABqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-01T14:43:44.219Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

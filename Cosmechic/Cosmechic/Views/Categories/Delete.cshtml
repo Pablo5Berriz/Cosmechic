@@ -1,0 +1,61 @@
+﻿@model Cosmechic.Models.Category
+
+@{
+    ViewData["Title"] = "Supression de la catégorie";
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    }
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<section class="py-5">
+    <div class="text-center">
+        <h1 class="fw-folder" style=" color:darkblue">
+            @ViewData["Title"]
+        </h1>
+    </div>
+</section>
+<hr />
+
+<div class="container mt-5 mb-5">
+    <div class="mb-5">
+        <h4 class="fw-bolder" style="color:crimson">Êtes-vous sûr de vouloir supprimer cette catégorie ?</h4>
+    </div>
+    <div class="col-lg-6">
+        <h4 class="fw-bolder">Catégorie @Model.Nom</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Nom)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Nom)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Image)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Image)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Disponible)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Disponible)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="CategorieId" />
+            <a asp-action="Index" class="btn btn-secondary">Retour a la liste</a>
+            <input type="submit" value="Supprimer" class="btn btn-danger" />
+        </form>
+    </div>
+</div>

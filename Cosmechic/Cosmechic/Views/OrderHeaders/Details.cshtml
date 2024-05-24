@@ -1,0 +1,49 @@
+﻿@model Cosmechic.Models.OrderHeader
+
+@{
+    ViewData["Title"] = "Details de la commande";
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    }
+}
+<section class="py-5" style="margin-top: 100px;">
+    <div class="text-center">
+        <h1 class="fw-folder" style=" color:darkblue">
+            @ViewData["Title"]
+        </h1>
+    </div>
+</section>
+<hr />
+
+
+<div class="container text-center rounded bg-white mt-5 mb-5 py-5" style="margin-top: 100px;">
+    <div class="row">
+        <div class="col-md-8 py-5">
+            <dl class="row">
+                <dt class="col-sm-4">Numéro de commande</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Id)</dd>
+
+                <dt class="col-sm-4">Nom du client</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Name)</dd>
+
+                <dt class="col-sm-4">Date de la commande:</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.OrderDate)</dd>
+
+                <dt class="col-sm-4">Total de la commande:</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.OrderTotal) CAD</dd>
+
+                <dt class="col-sm-4">Statut de la commande</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.OrderStatus)</dd>
+
+                <dt class="col-sm-4">Statut du paiement</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.PaymentStatus)</dd>
+
+                <dt class="col-sm-4">Numéro de suivi</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.TrackingNumber)</dd>
+            </dl>
+            <a class="btn btn-secondary" asp-action="Index">Retour</a>
+        </div>
+    </div>
+</div>
+

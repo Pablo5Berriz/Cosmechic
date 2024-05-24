@@ -1,0 +1,28 @@
+﻿@model int
+
+@{
+    ViewData["Title"] = "Confirmation de commande";
+}
+<section class="py-5" style="margin-top: 100px;">
+    <div class="text-center">
+        <h1 class="fw-folder" style=" color:darkblue">
+            @ViewData["Title"]
+        </h1>
+    </div>
+</section>
+<div class="container mt-5 mb-5" style="margin-top: 100px;">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <p>Merci d'avoir passé commande !</p>
+                    <p>Votre numéro de commande est : <strong>@Model</strong></p>
+                    <img src="~/Images_Produits" width="65%" class="img-fluid mb-4" alt="Confirmation de commande" />
+                    <p>Votre commande a été passée avec succès !</p>
+                    <p>Nous espérons que vous apprécierez vos achats.</p>
+                    <a class="btn btn-primary" asp-action="Index" asp-controller="Home">Retournez à la page d'accueil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+﻿@model ShoppingCart
+
+@{
+    ViewData["Title"] = "Ajout produit";
+}
+
+<section class="py-5" style="margin-top: 100px;">
+    <div class="text-center">
+        <h1 class="fw-folder" style=" color:darkblue">
+            @ViewData["Title"]
+        </h1>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-md-6">
+                                <img src="@Url.Content("~/Images_Produits/" + Model.Product.Image)" class="img-fluid rounded" alt="Image de @Model.Product.Image">
+                            </div>
+                            <div class="col-md-6">
+                                <h2 class="fw-bold">@Model.Product.Nom</h2>
+                                <p>@Html.Raw(Model.Product.Description)</p>
+                                <form method="post" class="mt-4" id="addToCartForm">
+                                    <input hidden asp-for="ProduitId" />
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">Quantité</span>
+                                        <input asp-for="Count" type="number" value="1" class="form-control" aria-label="Quantité" aria-describedby="basic-addon2">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-block">Ajouter au panier</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <a asp-controller="Categories" asp-action="Customer" class="btn btn-outline-primary">Continuer les achats</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.getElementById("addToCartForm").addEventListener("submit", function () {
+        window.history.back();
+    });
+</script>
+

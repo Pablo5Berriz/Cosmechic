@@ -1,0 +1,88 @@
+﻿@model Cosmechic.ViewModels.PaginatedList<Cosmechic.Models.Category>
+
+@{
+    ViewData["Title"] = "Liste de toutes les catégories";
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    }
+}
+
+
+<section class="py-5">
+    <div class="text-center">
+        <h1 class="fw-folder" style=" color:darkblue">
+            @ViewData["Title"]
+        </h1>
+    </div>
+</section>
+
+
+<p class="ml-5">
+    <a asp-action="Create" class="btn btn-primary">Ajouter une catégorie</a>
+</p>
+
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Disponible</th>
+                <th>Action</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="@Url.Content("~/Images Categories/" + item.Image)" class="img-thumbnail" style="max-width: 100px; max-height: 100px" alt="Image de @item.Nom">
+                    </td>
+                    <td>@item.Nom</td>
+                    <td>@item.Description</td>
+                    <td>@(item.Disponible ? "Oui" : "Non")</td>
+                    <td>
+                        <a href="@Url.Action("Index", "Produits", new { id = item.CategorieId })" class="btn btn-warning">Voir Produits</a>
+
+                        <div class="btn-group mt-2" role="group" aria-label="Actions">
+                            <a asp-action="Details" asp-route-id="@item.CategorieId" class="btn btn-info">Détails</a>
+                            <a asp-action="Edit" asp-route-id="@item.CategorieId" class="btn btn-primary">Modifier</a>
+                            <a asp-action="Delete" asp-route-id="@item.CategorieId" class="btn btn-danger">Supprimer</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Pagination -->
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        @if (Model.HasPreviousPage)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { page = Model.PageIndex - 1 })">Précédent</a>
+            </li>
+        }
+
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+            </li>
+        }
+
+        @if (Model.HasNextPage)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { page = Model.PageIndex + 1 })">Suivant</a>
+            </li>
+        }
+    </ul>
+</nav>

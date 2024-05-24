@@ -1,0 +1,67 @@
+﻿@model Cosmechic.ViewModels.CategorieViewModel
+
+@{
+    ViewData["Title"] = "Modifier la Catégorie";
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    }
+}
+
+<section class="py-5">
+    <div class="text-center">
+        <h1 class="fw-folder" style=" color:darkblue">
+            @ViewData["Title"]
+        </h1>
+    </div>
+</section>
+<hr />
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="col-md-4">
+            <form asp-action="Edit" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="CategorieId" />
+
+                <div class="form-group">
+                    <label asp-for="Nom" class="control-label"></label>
+                    <input asp-for="Nom" class="form-control" />
+                    <span asp-validation-for="Nom" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Image" class="control-label"></label>
+                    <input type="file" asp-for="Image" class="form-control" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CategorieId" class="control-label">Catégorie</label>
+                    <select asp-for="CategorieId" asp-items="@Model.Categories" class="form-control">
+                        <option value="">Sélectionnez une catégorie</option>
+                    </select>
+                    <span asp-validation-for="CategorieId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Disponible" /> @Html.DisplayNameFor(model => model.Disponible)
+                    </label>
+                </div>
+                <br />
+                <div class="form-group">
+                    <a asp-action="Index" class="btn btn-secondary">Retour à la liste</a>
+                    <input type="submit" value="Sauvegarder" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

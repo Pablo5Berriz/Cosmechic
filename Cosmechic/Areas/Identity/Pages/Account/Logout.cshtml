@@ -1,0 +1,41 @@
+﻿@page
+@model LogoutModel
+
+@{
+    ViewData["Title"] = "Déconnexion";
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    }
+}
+<section class="py-5" style="margin-top: 100px;">
+    <div class="text-center">
+        <h1 class="fw-folder" style=" color:darkblue">
+            @ViewData["Title"]
+        </h1>
+    </div>
+</section>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    @if (User.Identity?.IsAuthenticated ?? false)
+                    {
+                        <div class="text-center">
+                            <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                                <button type="submit" class="btn btn-primary btn-block">Déconnexion</button>
+                            </form>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <p class="text-center">Vous avez réussi à vous déconnecter de l'application.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

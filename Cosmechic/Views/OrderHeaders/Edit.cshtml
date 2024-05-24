@@ -1,0 +1,86 @@
+﻿@model Cosmechic.Models.OrderHeader
+
+@{
+    ViewData["Title"] = "Modification de la commande";
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    }
+}
+
+@{
+    bool isAdmin = User.IsInRole("Admin");
+}
+
+@if (!isAdmin)
+{
+    <section class="py-5" style="margin-top: 100px;">
+        <div class="text-center">
+            <h1 class="fw-folder" style=" color:darkblue">
+                @ViewData["Title"]
+            </h1>
+        </div>
+    </section>
+}
+
+
+<div class="container text-center rounded bg-white mt-5 mb-5 py-5" style="margin-top: 100px;">
+    <h1 class="h3 mb-4 text-gray-800">Modification de la commande</h1>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="p-3 py-5">
+                <form asp-action="Edit">
+                    <div class="row mt-2">
+                        <div asp-validation-summary="ModelOnly" class="text-danger col-12">Numéro de commande</div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="row mt-2">
+                            <label asp-for="Name" class="control-label">Nom du client</label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="row mt-2">
+                            <label asp-for="OrderDate" class="control-label">Date de la commande</label>
+                            <input asp-for="OrderDate" class="form-control" />
+                            <span asp-validation-for="OrderDate" class="text-danger"></span>
+                        </div>
+                        <div class="row mt-2">
+                            <label asp-for="OrderTotal" class="control-label">Total de la commande</label>
+                            <input asp-for="OrderTotal" class="form-control" />
+                            <span asp-validation-for="OrderTotal" class="text-danger"></span>
+                        </div>
+                        <div class="row mt-2">
+                            <label asp-for="OrderStatus" class="control-label">Statut de la commande</label>
+                            <input asp-for="OrderStatus" class="form-control" />
+                            <span asp-validation-for="OrderStatus" class="text-danger"></span>
+                        </div>
+                        <div class="row mt-2">
+                            <label asp-for="PaymentStatus" class="control-label">Statut du paiement</label>
+                            <input asp-for="PaymentStatus" class="form-control" />
+                            <span asp-validation-for="PaymentStatus" class="text-danger"></span>
+                        </div>
+                        <div class="row mt-2">
+                            <label asp-for="TrackingNumber" class="control-label">Numéro de suivi</label>
+                            <input asp-for="TrackingNumber" class="form-control" />
+                            <span asp-validation-for="TrackingNumber" class="text-danger"></span>
+                        </div>
+                        <div class="mt-5 text-center">
+                            <a class="btn btn-secondary" asp-action="Index">Annuler</a>
+                            <input type="submit" value="Enregistrer" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+
+

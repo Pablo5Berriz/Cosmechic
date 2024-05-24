@@ -1,0 +1,64 @@
+﻿@using Cosmechic.Models.ViewModels
+@model ShoppingCartVM
+
+@{
+    ViewData["Title"] = "Mon panier";
+}
+
+<div class="container py-5 mt-5 mb-5" style="margin-top: 100px;">
+    <form method="post" class="container">
+        <div class="card my-5">
+            <div class="card-header bg-secondary text-white">
+                <div class="row px-4">
+                    <div class="col-6">
+                        <h5 class="pt-2">Mon Panier</h5>
+                    </div>
+                    <div class="col-6 text-end">
+                        <a asp-controller="Categorie" asp-action="Index" class="btn btn-primary btn-sm">Continuer les achats</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                @foreach (var item in Model.ShoppingCartList)
+                {
+                    <div class="row border-bottom py-3">
+                        <div class="col-md-3">
+                            <img src="@Url.Content("~/Images_Produits/" + item.Product.Image)" class="img-fluid rounded" alt="Image de @item.Product.Nom">
+                        </div>
+                        <div class="col-md-9">
+                            <h5 class="mb-0">@item.Product.Nom</h5>
+                            <p class="text-muted">@item.Product.Description</p>
+                            <div class="d-flex align-items-center">
+                                <span class="text-primary me-3 fw-bold">@item.Price.ToString("0.00") CAD</span>
+                                <span class="text-muted me-3">x</span>
+                                <span class="fw-bold">@item.Count</span>
+                                <div class="btn-group ms-3" role="group">
+                                    <a asp-action="plus" asp-route-cartId="@item.Id" class="btn btn-primary"><i class="bi bi-plus-square"></i></a>
+                                    <a asp-action="minus" asp-route-cartId="@item.Id" class="btn btn-primary"><i class="bi bi-dash-square"></i></a>
+                                </div>
+                                <a asp-action="remove" asp-route-cartId="@item.Id" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="card-footer bg-white">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <ul class="list-group mb-3">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span class="fw-bold">Total (CAD)</span>
+                                <span class="badge bg-primary rounded-pill">@Model.OrderHeader.OrderTotal CAD</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 offset-md-4">
+                        <a asp-action="Summary" class="btn btn-primary btn-lg w-100">Passer au paiement</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

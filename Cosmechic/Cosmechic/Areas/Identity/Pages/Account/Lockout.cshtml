@@ -1,0 +1,25 @@
+﻿@page
+@model LockoutModel
+@{
+    ViewData["Title"] = "Verrouillé";
+}
+
+<section class="py-5" style="margin-top: 100px;">
+    <div class="text-center">
+        <h1 class="fw-folder" style=" color:darkblue">
+            @ViewData["Title"]
+        </h1>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <p class="text-danger">Ce compte a été bloqué, veuillez réessayer plus tard.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

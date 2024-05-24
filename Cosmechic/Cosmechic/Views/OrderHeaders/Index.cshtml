@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Cosmechic.Models.OrderHeader>
+
+@{
+    ViewData["Title"] = "Toutes les commandes";
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    }
+}
+
+<div class="container mt-5 mb-5" style="margin-top: 100px;">
+    <div class="card">
+        <div class="card shadow mb-4">
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="card-header py-3">
+                    <h1 class="m-0 font-weight-bold text-primary text-center">Toutes les commandes</h1>
+                </div>
+            }
+            else
+            {
+                <div class="card-header">
+                    <h1 class="h3 mb-0 text-center text-gray-800" style="color:darkblue; margin-top: 100px">Mes commandes</h1>
+                </div>
+            }
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Numéro de commande</th>
+                            <th>Nom du client</th>
+                            <th>Date de la commande</th>
+                            <th>Total de la commande</th>
+                            <th>Statut de la commande</th>
+                            <th>Statut du paiement</th>
+                            <th>Numéro de suivi</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="text-center">
+                                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.OrderTotal) CAD</td>
+                                <td>@Html.DisplayFor(modelItem => item.OrderStatus)</td>
+                                <td>@Html.DisplayFor(modelItem => item.PaymentStatus)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TrackingNumber)</td>
+                                <td>
+                                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.Id">Detail</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

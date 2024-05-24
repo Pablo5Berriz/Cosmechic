@@ -1,0 +1,73 @@
+﻿@model Cosmechic.Models.Produit
+
+@{
+    ViewData["Title"] = "Détails du produit";
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    }
+}
+<section class="py-5">
+    <div class="text-center">
+        <h1 class="fw-folder" style=" color:darkblue">
+            @ViewData["Title"]
+        </h1>
+    </div>
+</section>
+<hr />
+
+
+<div class="container mt-5 mb-5">
+    <h1 class="text-center">@Model.Nom</h1>
+    <hr />
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            @if (!string.IsNullOrEmpty(Model.Image))
+            {
+                <img src="@Url.Content("~/Images_Produits/" + Model.Image)" class="img-fluid" alt="Produit: @Model.Nom" style="max-width: 50%;">
+            }
+        </div>
+
+        <div class="col-md-6">
+            <dl class="row">
+                <dt class="col-sm-4">Description</dt>
+                <dd class="col-sm-8">@Model.Description</dd>
+
+                <dt class="col-sm-4">Prix</dt>
+                <dd class="col-sm-8">@Model.Prix.ToString("0.00") CAD</dd>
+                <dt class="col-sm-4">En Stock</dt>
+                <dd class="col-sm-8">@Model.Stock</dd>
+
+                <dt class="col-sm-4">Disponible</dt>
+                <dd class="col-sm-8">@Model.Disponible</dd>
+
+                <dt class="col-sm-4">Catégorie</dt>
+                <dd class="col-sm-8">@Model.Categorie.Nom</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col text-center mt-4">
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-action="Index" asp-controller="Produits" class="btn btn-secondary">Retour à la liste</a>
+                <a asp-action="Edit" asp-route-id="@Model.ProduitId" class="btn btn-primary">Modifier</a>
+            }
+            else
+            {
+                <button class="btn btn-primary" onclick="ajouterAuPanier(@Model.ProduitId)">Ajouter au panier</button>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    img.img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+</style>

@@ -1,0 +1,75 @@
+﻿@model Cosmechic.ViewModels.PaginatedList<Cosmechic.Models.Produit>
+
+@{
+    ViewData["Title"] = "Produits de la Catégorie";
+}
+
+<section class="py-5">
+    <div class="text-center">
+        <h1 class="fw-folder" style="color: darkblue;">@ViewData["Title"] @ViewBag.CategorieNom</h1>
+    </div>
+</section>
+<style>
+    section.py-5 {
+        margin-top: 100px;
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    }
+
+        .card img {
+            max-height: 400px; 
+            width: auto;
+            object-fit: cover;
+        }
+
+    .card-body {
+        padding: 10px; 
+        margin-bottom: 10px; 
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+        margin-bottom: 5px; 
+    }
+
+    .card-text {
+        font-size: 1rem; 
+        color: #777;
+    }
+
+    .badge {
+        margin-top: 4px; 
+    }
+
+    .btn {
+        font-size: 0.9rem; 
+    }
+</style>
+
+<section>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach (var produit in Model)
+            {
+                <div class="col">
+                    <div class="card">
+                        <img src="@Url.Content("~/Images_Produits/" + produit.Image)" class="card-img-top" alt="Image de @produit.Nom" />
+                        <div class="card-body">
+                            <h5 class="card-title">@produit.Nom</h5>
+                            <p class="card-text">@produit.Description</p>
+                            <p class="card-title">Prix: @produit.Prix.ToString("0.00") CAD</p>
+                            <p class="card-text">Quantité Disponible: @produit.Stock</p>
+                            <a class="btn btn-primary" asp-action="ItemDetails" asp-route-productId="@produit.ProduitId">
+                                <i class="bi bi-cart-plus"></i> Ajouter au panier
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

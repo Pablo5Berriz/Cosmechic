@@ -1,0 +1,96 @@
+﻿@model Cosmechic.Models.AspNetUser
+
+@{
+    ViewData["Title"] = "Modifier profil";
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    }
+}
+@{
+    bool isAdmin = User.IsInRole("Admin");
+}
+
+@if (!isAdmin)
+{
+    <section class="py-5" style="margin-top: 100px;">
+        <div class="text-center">
+            <h1 class="fw-folder" style=" color:darkblue">
+                @ViewData["Title"]
+            </h1>
+        </div>
+    </section>
+}
+
+<div class="container mt-5 mb-5" style="margin-top: 100px;">
+    <div class="card">
+        <h1 class="mb-0 text-center" style="color:darkblue">Modifier mon profil</h1>
+        <div class="row">
+            <div class="col-md-4 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <img class="rounded-circle mt-5" width="150" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Paramètres du profil</h4>
+                    </div>
+                    <form asp-action="Edit">
+                        <div class="row mt-2">
+                            <div asp-validation-summary="ModelOnly" class="text-danger col-12"></div>
+                            <input type="hidden" asp-for="Id" />
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="UserName" class="control-label">Utilisateur</label>
+                                <input asp-for="UserName" class="form-control" />
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Email" class="control-label">Email</label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="PhoneNumber" class="control-label">Numéro Téléphone</label>
+                                <input asp-for="PhoneNumber" class="form-control" />
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="StreetAddress" class="control-label">Adresse</label>
+                                <input asp-for="StreetAddress" class="form-control" />
+                                <span asp-validation-for="StreetAddress" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="City" class="control-label">Ville</label>
+                                <input asp-for="City" class="form-control" />
+                                <span asp-validation-for="City" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="State" class="control-label">Province</label>
+                                <input asp-for="State" class="form-control" />
+                                <span asp-validation-for="State" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="PostalCode" class="control-label">Code Postal</label>
+                                <input asp-for="PostalCode" class="form-control" />
+                                <span asp-validation-for="PostalCode" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="mt-5 text-center">
+                            <a class="btn btn-secondary" asp-action="Index">Annuler</a>
+                            <input type="submit" value="Enregistrer" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -1,0 +1,85 @@
+﻿@model Cosmechic.Models.Avi
+
+@{
+    ViewData["Title"] = "Créer un avis";
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    }
+}
+
+<section class="py-5" style="margin-top: 100px;">
+    <div class="text-center">
+        <h1 class="fw-folder" style=" color:darkblue">
+            @ViewData["Title"]
+        </h1>
+    </div>
+</section>
+<div class="container mt-5 mb-5" style="margin-top: 100px;">
+    <div class="card">
+        <div class="card shadow mb-4">
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="card-header py-3">
+                    <h1 class="m-0 font-weight-bold text-primary">Suppression de l'avis'</h1>
+                </div>
+            }
+            else
+            {
+                <div class="card-header">
+                    <h1 class="h3 mb-0 text-gray-800">Suppression de mon avis</h1>
+                </div>
+            }
+        </div>
+        <div class="card-body">
+            @if (User.IsInRole("Admin"))
+            {
+                <h3 class="text-warning">Êtes-vous sûr de vouloir supprimer cet avis ?</h3>
+            }
+            else
+            {
+                <h3 class="text-warning">Êtes-vous sûr de vouloir supprimer votre avis ?</h3>
+            }
+    
+            <hr />
+            <dl class="row">
+                <dt class = "col-sm-2">
+                    @Html.DisplayNameFor(model => model.Note)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.Note)
+                </dd>
+                <dt class = "col-sm-2">
+                    @Html.DisplayNameFor(model => model.Commentaire)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.Commentaire)
+                </dd>
+                <dt class = "col-sm-2">
+                    @Html.DisplayNameFor(model => model.DateReview)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.DateReview)
+                </dd>
+                <dt class = "col-sm-2">
+                    @Html.DisplayNameFor(model => model.AspNetUser)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.AspNetUser.Id)
+                </dd>
+                <dt class = "col-sm-2">
+                    @Html.DisplayNameFor(model => model.Produit)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.Produit.ProduitId)
+                </dd>
+            </dl>
+        </div>
+    
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="ReviewId" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Index">Annuler</a>
+        </form>
+    </div>
+</div>

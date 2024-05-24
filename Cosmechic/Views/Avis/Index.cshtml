@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Cosmechic.Models.Avi>
+
+@{
+    ViewData["Title"] = "Liste des Avis";
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    }
+}
+
+<section class="py-5">
+    <div class="text-center">
+        <h1 class="fw-folder" style="color: darkblue;">
+            @ViewData["Title"]
+        </h1>
+    </div>
+</section>
+
+<div class="container mt-5 mb-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Note
+                </th>
+                <th>
+                    Commentaire
+                </th>
+                <th>
+                    Date de l'Avis
+                </th>
+                <th>
+                    Utilisateur
+                </th>
+                <th>
+                    Produit
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Note)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Commentaire)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateReview)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AspNetUser.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Produit.Nom)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ReviewId">Modifier</a> |
+                        <a asp-action="Details" asp-route-id="@item.ReviewId">Détails</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ReviewId">Supprimer</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

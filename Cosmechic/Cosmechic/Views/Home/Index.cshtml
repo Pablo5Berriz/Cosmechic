@@ -1,0 +1,94 @@
+﻿@model Cosmechic.ViewModels.HomeIndexViewModel
+
+<style>
+    .product-image,
+    .category-image
+    {
+        width: 100%;
+        height: 350px; 
+        object-fit: cover; 
+    }
+</style>
+<div style="background-color: ghostwhite;">
+    <div class="row mt-5">
+        <div style="position: relative; width: 100%; height: calc(33vw);">
+            <img src="~/Images log_register_forgot/Accueil.jpg" alt="Bienvenue à Cosmechic" style="width: 100%; height: 100%; object-fit: cover;" />
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white;">
+                <h1>Bienvenue chez Cosmechic</h1>
+                <h5>Votre boutique afro par excellence</h5>
+                <a class="btn" style="color:white; background-color:darkblue" asp-controller="Categories" asp-action="Customer">Consulter nos categories</a>
+            </div>
+        </div>
+
+
+        <div class="row mt-5">
+            <div class="col text-center">
+                <h2 class="section-title">Produits Populaires</h2>
+            </div>
+        </div>
+        <div class="row mt-3">
+            @foreach (var produit in Model.ProduitsPopulaires)
+            {
+                <div class="col-md-3">
+                    <div class="card mb-3">
+                        <img src="@Url.Content("~/Images_Produits/" + produit.Image)" class="card-img-top product-image" alt="Image de @produit.Nom">
+                        <div class="card-body">
+                            <h5 class="card-title">@produit.Nom</h5>
+                            <p class="card-text">@produit.Description</p>
+                            <p class="card-text">Prix: @produit.Prix.ToString("0.00") CAD</p>
+                            <a class="btn btn-outline-primary" asp-controller="Produits" asp-action="ItemDetails"
+                               asp-route-productId="@produit.ProduitId">
+                                <i class="bi bi-cart-plus"></i> Acheter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="row mt-5">
+            <div class="col text-center">
+                <h2 class="section-title">Catégories Populaires</h2>
+            </div>
+        </div>
+        <div class="row mt-3">
+            @foreach (var categorie in Model.CategoriesPopulaires)
+            {
+                <div class="col-md-3">
+                    <div class="card mb-3">
+                        <img src="@Url.Content("~/Images Categories/" + categorie.Image)" class="card-img-top category-image" alt="Catégorie: @categorie.Nom">
+                        <div class="card-body">
+                            <h5 class="card-title">@categorie.Nom</h5>
+                            <a href="@Url.Action("Customer", "Produits", new { id = categorie.CategorieId })" class="btn btn-primary stretched-link">Voir Produits</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Carrousel d'Images Section -->
+        <div class="row mt-5">
+            <div class="col text-center">
+                <h2 class="section-title">Carrousel d'Images</h2>
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        @foreach (var produit in Model.TousLesProduits)
+                        {
+                            <div class="carousel-item @(produit == Model.TousLesProduits.First() ? "active" : "")">
+                                <img src="@Url.Content("~/Images_Produits/" + produit.Image)" style="width: 50%;height: 400px" alt="Image de @produit.Nom">
+                            </div>
+                        }
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

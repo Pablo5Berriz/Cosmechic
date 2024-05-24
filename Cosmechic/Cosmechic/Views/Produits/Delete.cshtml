@@ -1,0 +1,59 @@
+﻿@model Cosmechic.Models.Produit
+
+@{
+    ViewData["Title"] = "Suppression du Produit";
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    }
+}
+
+<section class="py-5">
+    <div class="text-center">
+        <h1 class="fw-folder" style=" color:darkblue">
+            @ViewData["Title"]
+        </h1>
+    </div>
+</section>
+<hr />
+
+
+<div class="container mt-5 mb-5">
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Attention !</h4>
+        <p>Êtes-vous sûr de vouloir supprimer le produit "<strong>@Model.Nom</strong>" ? Cette action est irréversible.</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mb-3">
+                <div class="card-header">Détails du Produit à Supprimer</div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">Nom</dt>
+                        <dd class="col-sm-8">@Model.Nom</dd>
+
+                        <dt class="col-sm-4">Description</dt>
+                        <dd class="col-sm-8">@Model.Description</dd>
+
+                        <dt class="col-sm-4">Prix</dt>
+                        <dd class="col-sm-8">@Model.Prix.ToString("0.00") CAD</dd>
+                        <dt class="col-sm-4">Stock</dt>
+                        <dd class="col-sm-8">@Model.Stock unités</dd>
+
+                        <dt class="col-sm-4">Disponible</dt>
+                        <dd class="col-sm-8">@Model.Disponible ? "Oui" : "Non"</dd>
+
+                        <dt class="col-sm-4">Catégorie</dt>
+                        <dd class="col-sm-8">@Model.Categorie.Nom</dd>
+                    </dl>
+                </div>
+            </div>
+            <form asp-action="Delete" method="post">
+                <input type="hidden" asp-for="ProduitId" />
+                <a asp-action="Index" asp-controller="Produits" class="btn btn-secondary">Annuler</a>
+                <button type="submit" class="btn btn-danger">Confirmer la Suppression</button>
+            </form>
+        </div>
+    </div>
+</div>

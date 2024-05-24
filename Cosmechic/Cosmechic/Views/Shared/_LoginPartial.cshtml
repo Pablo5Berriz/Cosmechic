@@ -1,0 +1,54 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img class="img-profile rounded-circle" src="~/img_admin/undraw_profile.svg" style="height: 30px;">
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                 aria-labelledby="userDropdown">
+                <a class="dropdown-item" asp-controller="AspNetUsers" asp-action="Index">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profil
+                </a>
+                @if (!User.IsInRole("Admin"))
+                {
+                    <a class="dropdown-item" asp-controller="OrderHeaders" asp-action="Index">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Commande
+                    </a>
+                }
+                @if (User.IsInRole("Admin"))
+                {
+                <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" asp-area="Identity" asp-controller="AspNetUsers" asp-action="Dashboard" title="Tableau de bord">
+                        <i class="fas fa-dashboard fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Tableau de bord
+                    </a>
+                }
+
+                <div class="dropdown-divider"></div>
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit" class="nav-link btn btn-link text-gray-400">Deconnexion</button>
+                </form>
+            </div>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Inscription</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Connexion</a>
+        </li>
+    }
+</ul>
+
+

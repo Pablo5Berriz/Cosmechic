@@ -1,0 +1,87 @@
+﻿@model Cosmechic.Models.AspNetUser
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Title"] = "Diagramme";
+}
+
+<div class="container-fluid">
+
+    <h1 class="h3 mb-2 text-gray-800">Diagramme</h1>
+
+    <div class="row">
+        <div class="col-xl-8 col-lg-7">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Évolution des Revenus</h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area">
+                        <canvas id="myAreaChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-7">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Répartition des Ventes</h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart-pie pt-4">
+                        <canvas id="salesDistributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const revenueData = {
+        labels: ["Jan", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Aout", "Sept", "Oct", "Nov", "Dec"],
+        datasets: [{
+            label: 'Revenu',
+            data: [0, 6500, 5000, 9000, 10000, 20000, 12000, 10000, 16000, 21000, 18000, 23762],
+            fill: true,
+            backgroundColor: 'rgba(78, 115, 223, 0.05)',
+            borderColor: 'rgba(78, 115, 223, 1)',
+        }]
+    };
+
+    const revenueConfig = {
+        type: 'line',
+        data: revenueData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            maintainAspectRatio: false
+        }
+    };
+
+    new Chart(document.getElementById('myAreaChart'), revenueConfig);
+
+    const salesData = {
+        labels: ["Commandes", "Revenus", "Livraisons"],
+        datasets: [{
+            data: [55, 30, 15],
+            backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+        }]
+    };
+
+    const salesConfig = {
+        type: 'doughnut',
+        data: salesData,
+        options: {
+            maintainAspectRatio: false,
+            cutout: '80%'
+        }
+    };
+
+    new Chart(document.getElementById('salesDistributionChart'), salesConfig);
+</script>

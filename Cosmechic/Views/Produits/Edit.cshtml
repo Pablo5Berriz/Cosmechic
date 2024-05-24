@@ -1,0 +1,110 @@
+﻿
+@model Cosmechic.Models.Produit
+
+@{
+    ViewData["Title"] = "Modifier le produit";
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    }
+}
+
+<section class="py-5">
+    <div class="text-center">
+        <h1 class="fw-folder" style=" color:darkblue">
+            @ViewData["Title"]
+        </h1>
+    </div>
+</section>
+<hr />
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <input type="hidden" asp-for="ProduitId" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+
+                <label asp-for="Nom" class="control-label">Nom du Produit</label>
+
+                <input asp-for="Nom" class="form-control" />
+
+                <span asp-validation-for="Nom" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group mb-3">
+
+                <label asp-for="CategorieId" class="control-label">Catégorie</label>
+
+                <select asp-for="CategorieId" class="form-control" asp-items="ViewBag.CategorieId"></select>
+
+                <span asp-validation-for="CategorieId" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group mb-3">
+
+                <label asp-for="Description" class="control-label">Description</label>
+
+                <textarea asp-for="Description" class="form-control"></textarea>
+
+                <span asp-validation-for="Description" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group mb-3">
+
+                <label asp-for="Prix" class="control-label">Prix</label>
+
+                <input asp-for="Prix" class="form-control" type="number" />
+
+                <span asp-validation-for="Prix" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group mb-3">
+
+                <label asp-for="Stock" class="control-label">Stock</label>
+
+                <input asp-for="Stock" class="form-control" type="number" />
+
+                <span asp-validation-for="Stock" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group form-check mb-3">
+
+                <input class="form-check-input" asp-for="Disponible" />
+
+                <label class="form-check-label" asp-for="Disponible">Disponible</label>
+
+            </div>
+
+            <div class="form-group mb-3">
+
+                <label asp-for="Image" class="control-label">Image du Produit</label>
+
+                <input asp-for="Image" class="form-control" type="file" />
+
+                <span asp-validation-for="Image" class="text-danger"></span>
+
+            </div>
+            <div class="form-group mt-4">
+                <a asp-action="Index" asp-controller="Produits" class="btn btn-secondary">Retour à la liste</a>
+                <input type="submit" value="Sauvegarder" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts 
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+    }
+}

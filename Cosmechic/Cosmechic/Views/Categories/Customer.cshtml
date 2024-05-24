@@ -1,0 +1,97 @@
+﻿@model Cosmechic.ViewModels.PaginatedList<Cosmechic.Models.Category>
+
+@{
+    ViewData["Title"] = "Catégories";
+}
+
+<section class="py-5">
+    <div class="text-center">
+        <h1 class="fw-folder" style="color: darkblue;">
+            @ViewData["Title"]
+        </h1>
+    </div>
+</section>
+
+<style>
+    section.py-5 {
+        margin-top: 100px;
+    }
+    
+    .row-cols-1 .col .card {
+        height: 100%;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    }
+
+        .row-cols-1 .col .card img {
+            height: 400px;
+            width: auto; 
+            object-fit: cover;
+        }
+
+    .row-cols-1 .col .card-body {
+        padding: 16px;
+        margin-bottom: 20px;
+    }
+
+    .row-cols-1 .col .card-title {
+        margin-bottom: 10px;
+    }
+
+    .row-cols-1 .col .card-text {
+        color: #777;
+    }
+
+    .row-cols-1 .col .badge {
+        margin-top: 6px;
+    }
+</style>
+
+<section>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="@Url.Content("~/Images Categories/" + item.Image)" class="card-img-top img-fluid" alt="Image de @item.Nom">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Nom</h5>
+                            <span class="badge bg-success text-white">@(item.Disponible ? "Disponible" : "Non disponible")</span>
+                            <a href="@Url.Action("Customer", "Produits", new { id = item.CategorieId })" class="btn btn-primary">Voir Produits</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Pagination -->
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        @if (Model.HasPreviousPage)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Customer", new { page = Model.PageIndex - 1 })">Précédent</a>
+            </li>
+        }
+
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Customer", new { page = i })">@i</a>
+            </li>
+        }
+
+        @if (Model.HasNextPage)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Customer", new { page = Model.PageIndex + 1 })">Suivant</a>
+            </li>
+        }
+    </ul>
+</nav>

@@ -1,0 +1,41 @@
+﻿@page
+@model ExternalLoginModel
+@{
+    ViewData["Title"] = "Enregistrer";
+}
+
+
+<section class="py-5" style="margin-top: 100px;">
+    <div class="text-center">
+        <h1 class="fw-bolder" style="color: #000080">
+            @ViewData["Title"]
+        </h1>
+        <h2 id="external-login-title">Associez votre compte @Model.ProviderDisplayName.</h2>
+    </div>
+</section>
+
+<hr />
+
+<p id="external-login-description" class="text-info">
+    Vous vous êtes authentifié avec succès auprès de <strong>@Model.ProviderDisplayName</strong>.
+    Veuillez saisir une adresse électronique pour ce site ci-dessous et cliquer sur le bouton Enregistrer pour terminer la
+    pour terminer la connexion.
+</p>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control" autocomplete="email" placeholder="Veuillez saisir votre adresse e-mail." />
+                <label asp-for="Input.Email" class="form-label"></label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Enregistrer</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

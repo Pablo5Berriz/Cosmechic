@@ -1,0 +1,73 @@
+﻿@model Cosmechic.ViewModels.PaginatedList<Cosmechic.Models.Produit>
+
+@{
+    ViewData["Title"] = "Produits par Catégorie";
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    }
+}
+
+
+<section class="py-5">
+    <div class="text-center">
+        <h1 class="fw-folder" style=" color:darkblue">
+            @ViewData["Title"]
+        </h1>
+    </div>
+</section>
+
+
+<p class="ml-5">
+    <a asp-action="Create" asp-route-Id="@Model.FirstOrDefault().CategorieId" class="btn btn-primary ml-5">Ajouter un produit</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Stock</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var produit in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="@Url.Content("~/Images_Produits/" + produit.Image)" class="card-img-top" style="max-width: 100px; max-height: 100px" alt="Image de @produit.Nom" />
+                    </td>
+                    <td>@produit.Nom</td>
+                    <td>@produit.Description</td>
+                    <td>@produit.Prix.ToString("0.00") CAD</td>
+                    <td>@produit.Stock</td>
+                    @if (!User.IsInRole("Admin"))
+                    {
+                        <td>
+                            <a class="btn btn-outline-primary" asp-action="ItemDetails" asp-route-productId="@produit.ProduitId">
+                                <i class="bi bi-cart-plus"></i> Ajouter au panier
+                            </a>
+                        </td>
+                    }
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td>
+                            <div class="btn-group mt-2" role="group" aria-label="Actions">
+                                <a href="@Url.Action("Details", new { id = produit.ProduitId })" class="btn btn-secondary btn-sm">Détails</a>
+                                <a href="@Url.Action("Edit", new { id = produit.ProduitId })" class="btn btn-primary btn-sm">Modifier</a>
+                                <a href="@Url.Action("Delete", new { id = produit.ProduitId })" class="btn btn-danger btn-sm">Supprimer</a>
+                            </div>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

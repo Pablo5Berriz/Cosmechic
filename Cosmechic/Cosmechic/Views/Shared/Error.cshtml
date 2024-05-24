@@ -1,0 +1,59 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Erreur";
+}
+
+<section class="container-fluid py-5" style="margin-top: 100px;">
+    <div class="text-center">
+        <h1 class="text-center mb-5 container-fluid text-danger">
+            @ViewData["Title"]
+        </h1>
+        <h2 class="text-danger">Une erreur s'est produite lors du traitement de votre demande</h2>
+    </div>
+</section>
+
+@if (Model.ShowRequestId)
+{
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <p><strong>Demande ID:</strong> <code>@Model.RequestId</code></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<h3 class="text-center">Mode de développement</h3>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <p>
+                        Le passage à l'environnement de <strong>développement</strong> permet d'afficher des informations plus détaillées sur l'erreur qui s'est produite.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <p>
+                        <strong>L'environnement de développement ne doit pas être activé pour les applications déployées.</strong>
+                        Il peut en résulter l'affichage d'informations sensibles provenant d'exceptions pour les utilisateurs finaux.
+                        Pour le débogage local, activez l'environnement en définissant la variable d'environnement <strong>ASPNETCORE_ENVIRONMENT</strong> sur <strong>Développement</strong>
+                        et en redémarrant l'application.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
